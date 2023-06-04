@@ -77,15 +77,19 @@ class _ContactsScreenState extends State<ContactsScreen> {
     );
   }
 
-  Future<List<Contact>> getContacts() async {
+  void getContacts() async {
     sqlHelper = SqlHelper();
-    List<Contact> contacts = await sqlHelper.getContacts();
-    return contacts;
+    List<Contact> resContacts = await sqlHelper.getContacts();
+    setState(() {
+      contacts = resContacts;
+    });
   }
 
-  Future<List<Contact>> searchContacts(String searchStr) async {
+  void searchContacts(String searchStr) async {
     sqlHelper = SqlHelper();
-    List<Contact> contacts = await sqlHelper.searchContacts(searchStr);
-    return contacts;
+    List<Contact> resContacts = await sqlHelper.searchContacts(searchStr);
+    setState(() {
+      contacts = resContacts;
+    });
   }
 }
